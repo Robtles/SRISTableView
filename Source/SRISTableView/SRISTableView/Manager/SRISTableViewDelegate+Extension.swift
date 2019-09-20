@@ -12,28 +12,20 @@ import UIKit
 
 public extension SRISDelegate {
     
+    var displaySorting: SRISTableViewSorting? {
+        return self.querySorting
+    }
+
     var filterParameters: [String: Any] {
         return [:]
     }
     
-    var displaySorting: SRISTableViewSorting? {
-        return self.querySorting
+    var intervalBeforeReload: TimeInterval {
+        return 3.0
     }
     
     var querySorting: SRISTableViewSorting? {
         return nil
-    }
-    
-    var shouldShowNoResultCell: Bool {
-        return false
-    }
-    
-    var shouldShowLoadingCell: Bool {
-        return false
-    }
-    
-    var shouldLoadCacheDataFirst: Bool {
-        return false
     }
     
     func failedCell(forTableView tableView: UITableView) -> UITableViewCell! {
@@ -59,6 +51,18 @@ public extension SRISDelegate {
             return nil
         }
     }
+
+    var shouldShowNoResultCell: Bool {
+        return false
+    }
+    
+    var shouldShowLoadingCell: Bool {
+        return false
+    }
+    
+    var shouldLoadCacheDataFirst: Bool {
+        return false
+    }
     
     var tableHeaderHeight: CGFloat {
         return .leastNormalMagnitude
@@ -71,9 +75,5 @@ public extension SRISDelegate {
     var tableRowHeight: CGFloat {
         return UITableView.automaticDimension
     }
-    
-    var intervalBeforeReload: TimeInterval {
-        return 3.0
-    }
-    
+
 }

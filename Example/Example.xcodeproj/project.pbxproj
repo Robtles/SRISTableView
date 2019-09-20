@@ -22,6 +22,7 @@
 		D457BFB72334D28600EBCD3B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D457BFB62334D28600EBCD3B /* libsqlite3.0.tbd */; };
 		D457BFBA2334D47E00EBCD3B /* FakeAPITestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D457BFB82334D47E00EBCD3B /* FakeAPITestViewController.swift */; };
 		D457BFBB2334D47E00EBCD3B /* ParseTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D457BFB92334D47E00EBCD3B /* ParseTestViewController.swift */; };
+		D457BFBD2335311800EBCD3B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D457BFBC2335311800EBCD3B /* TestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +56,7 @@
 		D457BFB62334D28600EBCD3B /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		D457BFB82334D47E00EBCD3B /* FakeAPITestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeAPITestViewController.swift; sourceTree = "<group>"; };
 		D457BFB92334D47E00EBCD3B /* ParseTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseTestViewController.swift; sourceTree = "<group>"; };
+		D457BFBC2335311800EBCD3B /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			children = (
 				D457BFB82334D47E00EBCD3B /* FakeAPITestViewController.swift */,
 				D457BFB92334D47E00EBCD3B /* ParseTestViewController.swift */,
+				D457BFBC2335311800EBCD3B /* TestViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				D457BFBB2334D47E00EBCD3B /* ParseTestViewController.swift in Sources */,
 				D457BFA02334D17F00EBCD3B /* SRISRequestTypeParse.swift in Sources */,
 				D457BFBA2334D47E00EBCD3B /* FakeAPITestViewController.swift in Sources */,
+				D457BFBD2335311800EBCD3B /* TestViewController.swift in Sources */,
 				D457BFA22334D18900EBCD3B /* SRISRequestTypeFake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

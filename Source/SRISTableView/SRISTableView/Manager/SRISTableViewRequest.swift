@@ -23,3 +23,9 @@ public protocol SRISTableViewRequestType {
     func load<Delegate: SRISDelegate>(delegate: Delegate, skipping: Int, cachingData: Bool, _ completion: @escaping ([ContentType]?, Error?) -> ())
     
 }
+
+public extension SRISRequest {
+    
+    func loadFromCache<Delegate: SRISDelegate>(delegate: Delegate, _ completion: @escaping ([ContentType]?, Error?) -> ()) {}
+    
+}

@@ -30,10 +30,4 @@ class SRISFakeRequest: NSObject, SRISRequest {
         }
     }
     
-    func loadFromCache<Delegate>(delegate: Delegate, _ completion: @escaping ([Int]?, Error?) -> ()) where Delegate : SRISTableViewDelegate {
-        SRISTableViewDelayer.delay(0.1) {
-            completion(self.alreadyLoadedCache, nil)
-        }
-    }
-    
 }
