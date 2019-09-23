@@ -64,15 +64,15 @@ public extension SRISDelegate {
         return false
     }
     
-    var tableHeaderHeight: CGFloat {
+    func tableHeaderHeight(withCurrentResults currentResults: [ContentType]) -> CGFloat? {
+        return .leastNormalMagnitude
+    }
+        
+    func tableFooterHeight(withCurrentResults currentResults: [ContentType]) -> CGFloat? {
         return .leastNormalMagnitude
     }
     
-    var tableFooterHeight: CGFloat {
-        return .leastNormalMagnitude
-    }
-    
-    var tableRowHeight: CGFloat {
+    func tableRowHeight(withCurrentResults currentResults: [ContentType]) -> CGFloat? {
         return UITableView.automaticDimension
     }
 

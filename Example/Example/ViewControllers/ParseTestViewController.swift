@@ -83,18 +83,6 @@ struct SRISParseTestDelegate: SRISDelegate {
         return tableView.dequeueReusableCell(withIdentifier: "loadingCell") as! SpinnerCell
     }
     
-    var tableHeaderHeight: CGFloat {
-        return .leastNormalMagnitude
-    }
-    
-    var tableFooterHeight: CGFloat {
-        return .leastNormalMagnitude
-    }
-    
-    var tableRowHeight: CGFloat {
-        return UITableView.automaticDimension
-    }
-    
 }
 
 

@@ -136,12 +136,12 @@ public protocol SRISTableViewDelegate {
     var shouldShowNoResultCell: Bool { get }
     
     /// Table view header height
-    var tableHeaderHeight: CGFloat { get }
+    func tableHeaderHeight(withCurrentResults currentResults: [ContentType]) -> CGFloat?
     
     /// Table view footer height
-    var tableFooterHeight: CGFloat { get }
+    func tableFooterHeight(withCurrentResults currentResults: [ContentType]) -> CGFloat?
     
     /// Table view row height
-    var tableRowHeight: CGFloat { get }
+    func tableRowHeight(withCurrentResults currentResults: [ContentType]) -> CGFloat?
     
 }
