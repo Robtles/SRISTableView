@@ -186,29 +186,29 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
     }
     
     public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.loadMoreOnScrollDelegate.tableRowHeight(withCurrentResults: self.allResultsRaw) ?? 0.0
+        return self.loadMoreOnScrollDelegate.tableRowHeight(withCurrentResults: self.allResultsRaw, forTableView: tableView) ?? 0.0
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.loadMoreOnScrollDelegate.tableRowHeight(withCurrentResults: self.allResultsRaw) ?? 0.0
+        return self.loadMoreOnScrollDelegate.tableRowHeight(withCurrentResults: self.allResultsRaw, forTableView: tableView) ?? 0.0
     }
     
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return self.loadMoreOnScrollDelegate.tableFooterHeight(withCurrentResults: self.allResultsRaw) ?? 0.0
+        return self.loadMoreOnScrollDelegate.tableFooterHeight(withCurrentResults: self.allResultsRaw, forTableView: tableView) ?? 0.0
     }
     
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: self.loadMoreOnScrollDelegate.tableFooterHeight(withCurrentResults: self.allResultsRaw) ?? 0.0))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: self.loadMoreOnScrollDelegate.tableFooterHeight(withCurrentResults: self.allResultsRaw, forTableView: tableView) ?? 0.0))
         view.backgroundColor = .clear
         return view
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return self.loadMoreOnScrollDelegate.tableHeaderHeight(withCurrentResults: self.allResultsRaw) ?? 0.0
+        return self.loadMoreOnScrollDelegate.tableHeaderHeight(withCurrentResults: self.allResultsRaw, forTableView: tableView) ?? 0.0
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: self.loadMoreOnScrollDelegate.tableHeaderHeight(withCurrentResults: self.allResultsRaw) ?? 0.0))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: self.loadMoreOnScrollDelegate.tableHeaderHeight(withCurrentResults: self.allResultsRaw, forTableView: tableView) ?? 0.0))
         view.backgroundColor = .clear
         return view
     }
