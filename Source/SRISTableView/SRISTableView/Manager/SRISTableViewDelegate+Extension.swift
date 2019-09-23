@@ -15,9 +15,9 @@ public extension SRISDelegate {
     var displaySorting: SRISTableViewSorting? {
         return self.querySorting
     }
-
-    var filterParameters: [String: Any] {
-        return [:]
+    
+    var filterParameters: [SRISTableViewFilter] {
+        return []
     }
     
     var intervalBeforeReload: TimeInterval {

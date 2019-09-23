@@ -28,8 +28,37 @@ struct SRISParseRequest: SRISRequest {
         if fromCache {
             query.fromLocalDatastore()
         }
-        delegate.filterParameters.forEach { key, value in
-            query.whereKey(key, equalTo: value)
+        delegate.filterParameters.forEach { filter in
+            switch filter.condition {
+            case .containedIn:
+                if let arrayValue = filter.value as? [Any] {
+                    query.whereKey(filter.key, containedIn: arrayValue)
+                }
+            case .containsString:
+                if let stringValue = filter.value as? String {
+                    query.whereKey(filter.key, contains: stringValue)
+                }
+            case .equalTo:
+                query.whereKey(filter.key, equalTo: filter.value)
+            case .greaterThan:
+                query.whereKey(filter.key, greaterThan: filter.value)
+            case .greaterThanOrEqual:
+                query.whereKey(filter.key, greaterThanOrEqualTo: filter.value)
+            case .keyDoesNotExists:
+                query.whereKeyDoesNotExist(filter.key)
+            case .keyExists:
+                query.whereKeyExists(filter.key)
+            case .lessThan:
+                query.whereKey(filter.key, lessThan: filter.value)
+            case .lessThanOrEqual:
+                query.whereKey(filter.key, lessThanOrEqualTo: filter.value)
+            case .notContainedIn:
+                if let arrayValue = filter.value as? [Any] {
+                    query.whereKey(filter.key, notContainedIn: arrayValue)
+                }
+            case .notEqualTo:
+                query.whereKey(filter.key, notEqualTo: filter.value)
+            }
         }
         if let sorting = delegate.querySorting {
             switch sorting.sorting {

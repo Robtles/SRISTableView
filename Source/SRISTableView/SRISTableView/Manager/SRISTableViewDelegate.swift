@@ -12,9 +12,41 @@ import UIKit
 
 public typealias SRISDelegate = SRISTableViewDelegate
 
+// MARK: - Filter
+
+public enum SRISTableViewFilterProtocol {
+    case containedIn
+    case containsString
+    case equalTo
+    case greaterThan
+    case greaterThanOrEqual
+    case keyDoesNotExists
+    case keyExists
+    case lessThan
+    case lessThanOrEqual
+    case notContainedIn
+    case notEqualTo
+}
+
+public struct SRISTableViewFilter {
+    
+    public var condition: SRISTableViewFilterProtocol
+    
+    public var key: String
+    
+    public var value: Any
+    
+    public init(whereKey key: String, _ condition: SRISTableViewFilterProtocol, value: Any) {
+        self.condition = condition
+        self.key = key
+        self.value = value
+    }
+    
+}
+
 // MARK: - Sorting
 
-public enum SRISTableViewSortingProtocol: String {
+public enum SRISTableViewSortingProtocol {
     case ascending
     case descending
 }
@@ -45,7 +77,7 @@ public protocol SRISTableViewDelegate {
     var className: String { get }
     
     /// The parameters to add to the request (ex: key == "age", value == 20). Defaults to an empty dictionary
-    var filterParameters: [String: Any] { get }
+    var filterParameters: [SRISTableViewFilter] { get }
     
     /// The time interval before automatic reload if there is no error cell. Default = 3sec
     var intervalBeforeReload: TimeInterval { get }
