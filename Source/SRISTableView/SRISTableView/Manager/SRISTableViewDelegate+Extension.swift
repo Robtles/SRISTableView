@@ -68,6 +68,10 @@ public extension SRISDelegate {
         return false
     }
     
+    var shouldTryReloadOnNoResult: Bool {
+        return false 
+    }
+    
     func tableHeaderHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat? {
         return .leastNormalMagnitude
     }

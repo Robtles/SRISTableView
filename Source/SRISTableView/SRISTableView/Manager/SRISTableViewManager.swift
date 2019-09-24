@@ -178,7 +178,7 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
             if indexPath.row < self.allResultsOrdered.count {
                 self.loadMoreOnScrollDelegate.didSelect(object: self.allResultsOrdered[indexPath.row])
             }
-            if self.state != .loading && indexPath.row == self.allResultsOrdered.count {
+            if (self.state != .finished(withPreviousResults: false) || (self.state == .finished(withPreviousResults: false) && self.loadMoreOnScrollDelegate.shouldTryReloadOnNoResult)) && self.state != .loading && indexPath.row == self.allResultsOrdered.count {
                 self.state = .pending
                 self.load()
             }

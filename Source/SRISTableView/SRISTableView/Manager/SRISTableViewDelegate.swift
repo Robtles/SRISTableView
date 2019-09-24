@@ -138,6 +138,9 @@ public protocol SRISTableViewDelegate {
     /// Defaults to false.
     var shouldShowNoResultCell: Bool { get }
     
+    /// If true, tapping the cell if no result will try to reload data
+    var shouldTryReloadOnNoResult: Bool { get }
+    
     /// Table view header height
     func tableHeaderHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat?
     
