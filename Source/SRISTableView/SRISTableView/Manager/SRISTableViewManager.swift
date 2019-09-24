@@ -113,6 +113,7 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
                 self.tryReload(fromCache: true)
             } else if let result = result as? [Delegate.ContentType] {
                 self.cachedResults.append(contentsOf: result)
+                self.state = .succeeded
                 self.load()
             }
         }

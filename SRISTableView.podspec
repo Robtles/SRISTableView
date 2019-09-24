@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'SRISTableView'
-  s.version = '0.0.11'
+  s.version = '0.0.12'
   s.license = 'MIT'
   s.summary = 'Easy infinite scrolling table views'
   s.homepage = 'https://github.com/StratRob/SRISTableView'
