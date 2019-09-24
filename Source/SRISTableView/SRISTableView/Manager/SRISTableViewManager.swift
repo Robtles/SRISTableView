@@ -105,6 +105,7 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
     }
     
     private func loadCache() {
+        self.state = .loading
         self.loadMoreOnScrollRequest.loadFromCache(delegate: self.loadMoreOnScrollDelegate) { (result, error) in
             if let error = error {
                 print("Oops: \(error.localizedDescription)")
