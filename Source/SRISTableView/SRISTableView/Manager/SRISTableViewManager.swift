@@ -95,7 +95,9 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
                     print("Oops: \(error.localizedDescription)")
                 }
                 self.state = .failed(withPreviousResults: !self.allResultsOrdered.isEmpty)
-                self.tryReload()
+                if self.loadMoreOnScrollDelegate.shouldTryReloadOnNoResult {
+                    self.tryReload()
+                }
             }
         }
     }
