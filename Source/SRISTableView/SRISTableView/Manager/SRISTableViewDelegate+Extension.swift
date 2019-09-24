@@ -51,6 +51,10 @@ public extension SRISDelegate {
             return nil
         }
     }
+    
+    func editActions(forObject object: ContentType, inTableView tableView: UITableView) -> [UITableViewRowAction]? {
+        return nil
+    }
 
     var shouldShowNoResultCell: Bool {
         return false
@@ -72,8 +76,20 @@ public extension SRISDelegate {
         return .leastNormalMagnitude
     }
     
-    func tableRowHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat? {
+    func tableResultRowHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat {
         return UITableView.automaticDimension
     }
 
+    func tableNoResultRowHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat {
+        return self.tableResultRowHeight(withCurrentResults: currentResults, forTableView: tableView)
+    }
+    
+    func tableFailedRowHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat {
+        return self.tableResultRowHeight(withCurrentResults: currentResults, forTableView: tableView)
+    }
+    
+    func tableLoadingRowHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat {
+        return self.tableResultRowHeight(withCurrentResults: currentResults, forTableView: tableView)
+    }
+    
 }

@@ -185,12 +185,38 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
         }
     }
     
+    public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        switch self.state {
+        case .pending:
+            return nil
+        case .loading, .failed, .finished, .succeeded:
+            return self.loadMoreOnScrollDelegate.editActions(forObject: self.allResultsOrdered[indexPath.row], inTableView: tableView)
+        }
+    }
+    
+    private func heightForRow(atIndexPath indexPath: IndexPath, withState state: LoadMoreOnScrollTableViewState) -> CGFloat {
+        if indexPath.row < self.allResultsRaw.count {
+            return self.loadMoreOnScrollDelegate.tableResultRowHeight(withCurrentResults: self.allResultsOrdered, forTableView: self.tableView)
+        } else {
+            switch self.state {
+            case .finished:
+                return self.loadMoreOnScrollDelegate.tableNoResultRowHeight(withCurrentResults: self.allResultsOrdered, forTableView: self.tableView)
+            case .pending, .succeeded:
+                return .leastNormalMagnitude
+            case .loading:
+                return self.loadMoreOnScrollDelegate.tableLoadingRowHeight(withCurrentResults: self.allResultsOrdered, forTableView: self.tableView)
+            case .failed:
+                return self.loadMoreOnScrollDelegate.tableFailedRowHeight(withCurrentResults: self.allResultsOrdered, forTableView: self.tableView)
+            }
+        }
+    }
+    
     public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.loadMoreOnScrollDelegate.tableRowHeight(withCurrentResults: self.allResultsRaw, forTableView: tableView) ?? 0.0
+        return self.heightForRow(atIndexPath: indexPath, withState: self.state)
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.loadMoreOnScrollDelegate.tableRowHeight(withCurrentResults: self.allResultsRaw, forTableView: tableView) ?? 0.0
+        return self.heightForRow(atIndexPath: indexPath, withState: self.state)
     }
     
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

@@ -123,6 +123,9 @@ public protocol SRISTableViewDelegate {
     /// Tapped cell event
     func didSelect(object: ContentType)
     
+    /// The edit actions available for a given object
+    func editActions(forObject object: ContentType, inTableView tableView: UITableView) -> [UITableViewRowAction]?
+    
     /// If a request fails: show a specific cell or not to the user.
     /// Defaults to false
     var shouldShowFailedCell: Bool { get }
@@ -141,7 +144,16 @@ public protocol SRISTableViewDelegate {
     /// Table view footer height
     func tableFooterHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat?
     
-    /// Table view row height
-    func tableRowHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat?
+    /// Table view result row height
+    func tableResultRowHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat
+    
+    /// Table view no result row height
+    func tableNoResultRowHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat
+    
+    /// Table view failed row height
+    func tableFailedRowHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat
+    
+    /// Table view loading row height
+    func tableLoadingRowHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat
     
 }
