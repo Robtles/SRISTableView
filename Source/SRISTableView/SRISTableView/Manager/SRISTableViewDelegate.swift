@@ -121,10 +121,10 @@ public protocol SRISTableViewDelegate {
     // MARK: Table View Delegate
     
     /// Tapped cell event
-    func didSelect(object: ContentType)
+    func didSelect<Request: SRISRequest>(object: ContentType, fromManager manager: SRISManager<Self, Request>)
     
     /// The edit actions available for a given object
-    func editActions(forObject object: ContentType, inTableView tableView: UITableView) -> [UITableViewRowAction]?
+    func editActions<Request: SRISRequest>(forObject object: ContentType, fromManager manager: SRISManager<Self, Request>) -> [UITableViewRowAction]?
     
     /// If a request fails: show a specific cell or not to the user.
     /// Defaults to false

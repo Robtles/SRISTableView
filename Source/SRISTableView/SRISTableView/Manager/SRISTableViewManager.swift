@@ -35,9 +35,11 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
     
     private var cachedResults: [Delegate.ContentType] = []
     
-    private var loadMoreOnScrollDelegate: Delegate!
+    open var callingViewController: UIViewController?
     
-    private var loadMoreOnScrollRequest: Request!
+    internal var loadMoreOnScrollDelegate: Delegate!
+    
+    internal var loadMoreOnScrollRequest: Request!
     
     private var pageCount: Int?
     
@@ -55,7 +57,7 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
     
     // MARK: View Properties
     
-    private var tableView: UITableView! {
+    internal var tableView: UITableView! {
         didSet {
             self.tableView.dataSource = self
             self.tableView.delegate = self
@@ -115,21 +117,12 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
         }
     }
     
-    private func start() {
+    internal func start() {
         if self.loadMoreOnScrollDelegate.shouldLoadCacheDataFirst {
             self.loadCache()
         } else {
             self.load()
         }
-    }
-    
-    public static func setupAndStart(inTableView tableView: UITableView, withLoadMoreOnScrollDelegate loadMoreOnScrollDelegate: Delegate, andRequestType requestType: Request) -> SRISManager<Delegate, Request> {
-        let manager = SRISTableViewManager()
-        manager.loadMoreOnScrollDelegate = loadMoreOnScrollDelegate
-        manager.loadMoreOnScrollRequest = requestType
-        manager.tableView = tableView
-        manager.start()
-        return manager
     }
     
     private func tryReload(fromCache: Bool = false) {
@@ -178,7 +171,7 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
             return
         case .loading, .failed, .finished, .succeeded:
             if indexPath.row < self.allResultsOrdered.count {
-                self.loadMoreOnScrollDelegate.didSelect(object: self.allResultsOrdered[indexPath.row])
+                self.loadMoreOnScrollDelegate.didSelect(object: self.allResultsOrdered[indexPath.row], fromManager: self)
             }
             if (self.state != .finished(withPreviousResults: false) || (self.state == .finished(withPreviousResults: false) && self.loadMoreOnScrollDelegate.shouldTryReloadOnNoResult)) && self.state != .loading && indexPath.row == self.allResultsOrdered.count {
                 self.state = .pending
@@ -192,7 +185,7 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
         case .pending:
             return nil
         case .loading, .failed, .finished, .succeeded:
-            return self.loadMoreOnScrollDelegate.editActions(forObject: self.allResultsOrdered[indexPath.row], inTableView: tableView)
+            return self.loadMoreOnScrollDelegate.editActions(forObject: self.allResultsOrdered[indexPath.row], fromManager: self)
         }
     }
     

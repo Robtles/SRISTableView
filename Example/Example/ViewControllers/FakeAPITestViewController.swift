@@ -17,9 +17,9 @@ class FakeAPITestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.manager = SRISManager.setupAndStart(inTableView: self.tableView,
-                                                 withLoadMoreOnScrollDelegate: SRISFakeDelegate(),
-                                                 andRequestType: SRISFakeRequest())
+        self.manager = setup(managerForTableView: self.tableView,
+                             withLoadMoreOnScrollDelegate: SRISFakeDelegate(),
+                             andRequestType: SRISFakeRequest())
     }
     
 }
@@ -51,7 +51,9 @@ struct SRISFakeDelegate: SRISDelegate {
         return cell
     }
     
-    func didSelect(object: Int) {}
+    func didSelect<Request>(object: Int, fromManager manager: SRISTableViewManager<SRISFakeDelegate, Request>) where Request : SRISTableViewRequestType {
+        print("Did tap \(object)")
+    }
     
     var shouldCacheData: Bool {
         return false

@@ -18,9 +18,9 @@ class ParseTestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.manager = SRISManager.setupAndStart(inTableView: self.tableView,
-                                                 withLoadMoreOnScrollDelegate: SRISParseTestDelegate(),
-                                                 andRequestType: SRISParseRequest())
+        self.manager = setup(managerForTableView: self.tableView,
+                             withLoadMoreOnScrollDelegate: SRISParseTestDelegate(),
+                             andRequestType: SRISParseRequest())
     }
     
 }
@@ -47,9 +47,7 @@ struct SRISParseTestDelegate: SRISDelegate {
         return cell
     }
     
-    func didSelect(object: PFObject) {
-        print("Found: \(object)")
-    }
+    func didSelect<Request>(object: PFObject, fromManager manager: SRISTableViewManager<SRISParseTestDelegate, Request>) where Request : SRISTableViewRequestType {}
     
     var parameters: [String : Any] {
         return [:]

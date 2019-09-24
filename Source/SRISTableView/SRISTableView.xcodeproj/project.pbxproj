@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D44B907E233A66F4009248D8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44B907D233A66F4009248D8 /* UIViewController+Extension.swift */; };
 		D457BF6A2334CBF200EBCD3B /* SRISTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = D457BF682334CBF200EBCD3B /* SRISTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D457BF942334CDAC00EBCD3B /* SRISTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D457BF902334CDAC00EBCD3B /* SRISTableViewManager.swift */; };
 		D457BF952334CDAC00EBCD3B /* SRISTableViewDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D457BF912334CDAC00EBCD3B /* SRISTableViewDelegate+Extension.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D44B907D233A66F4009248D8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		D457BF652334CBF200EBCD3B /* SRISTableView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SRISTableView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D457BF682334CBF200EBCD3B /* SRISTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SRISTableView.h; sourceTree = "<group>"; };
 		D457BF692334CBF200EBCD3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,6 +39,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D44B907C233A66E2009248D8 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D44B907D233A66F4009248D8 /* UIViewController+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		D457BF5B2334CBF200EBCD3B = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +66,7 @@
 		D457BF672334CBF200EBCD3B /* SRISTableView */ = {
 			isa = PBXGroup;
 			children = (
+				D44B907C233A66E2009248D8 /* Extension */,
 				D457BF8E2334CD8100EBCD3B /* Manager */,
 				D457BF8F2334CD8500EBCD3B /* Utils */,
 				D457BF682334CBF200EBCD3B /* SRISTableView.h */,
@@ -163,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D44B907E233A66F4009248D8 /* UIViewController+Extension.swift in Sources */,
 				D457BF952334CDAC00EBCD3B /* SRISTableViewDelegate+Extension.swift in Sources */,
 				D457BF962334CDAC00EBCD3B /* SRISTableViewRequest.swift in Sources */,
 				D457BF972334CDAC00EBCD3B /* SRISTableViewDelegate.swift in Sources */,

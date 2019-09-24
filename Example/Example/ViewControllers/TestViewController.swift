@@ -18,9 +18,9 @@ final class TestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.manager = SRISManager.setupAndStart(inTableView: self.tableView,
-                                                 withLoadMoreOnScrollDelegate: NewsFeedDelegate(),
-                                                 andRequestType: NewsFeedRequest())
+        self.manager = setup(managerForTableView: self.tableView,
+                             withLoadMoreOnScrollDelegate: NewsFeedDelegate(),
+                             andRequestType: NewsFeedRequest())
     }
 }
 
@@ -50,8 +50,8 @@ struct NewsFeedDelegate: SRISDelegate {
         return cell
     }
     
-    func didSelect(object: String) {
-        // Equivalent of didSelectRow(atIndexPath)
+    func didSelect<Request>(object: String, fromManager manager: SRISTableViewManager<NewsFeedDelegate, Request>) where Request : SRISTableViewRequestType {
+        print("Did tap: \(object)")
     }
     
     var shouldShowFailedCell: Bool {

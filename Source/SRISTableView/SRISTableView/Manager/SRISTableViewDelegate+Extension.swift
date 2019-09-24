@@ -52,7 +52,7 @@ public extension SRISDelegate {
         }
     }
     
-    func editActions(forObject object: ContentType, inTableView tableView: UITableView) -> [UITableViewRowAction]? {
+    func editActions<Request: SRISRequest>(forObject object: ContentType, fromManager manager: SRISManager<Self, Request>) -> [UITableViewRowAction]? {
         return nil
     }
 
@@ -69,7 +69,7 @@ public extension SRISDelegate {
     }
     
     var shouldTryReloadOnNoResult: Bool {
-        return false 
+        return false
     }
     
     func tableHeaderHeight(withCurrentResults currentResults: [ContentType], forTableView tableView: UITableView) -> CGFloat? {
