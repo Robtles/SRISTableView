@@ -38,7 +38,7 @@ struct SRISFakeDelegate: SRISDelegate {
     }
     
     var recordsPerRequest: Int {
-        return 10
+        return 3
     }
     
     var intervalBeforeReload: TimeInterval {

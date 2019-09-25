@@ -250,6 +250,9 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
     }
     
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard self.cachedResults.isEmpty else {
+            return
+        }
         switch self.state {
         case .loading, .finished, .failed(withPreviousResults: true):
             return
