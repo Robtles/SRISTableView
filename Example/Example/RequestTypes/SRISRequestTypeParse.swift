@@ -13,20 +13,18 @@ import SRISTableView
 
 struct SRISParseRequest: SRISRequest {
     
-    typealias ContentType = PFObject
-    
     func load<Delegate>(delegate: Delegate, skipping: Int, cachingData: Bool, _ completion: @escaping ([PFObject]?, Error?) -> ()) where Delegate : SRISTableViewDelegate {
-        self.performQuery(delegate: delegate, skipping: skipping, cachingData: cachingData, fromCache: delegate.shouldCacheData, completion)
+        self.performQuery(delegate: delegate, skipping: skipping, cachingData: cachingData, fromCache: false, completion)
     }
     
     func loadFromCache<Delegate>(delegate: Delegate, _ completion: @escaping ([PFObject]?, Error?) -> ()) where Delegate : SRISTableViewDelegate {
-        self.performQuery(delegate: delegate, skipping: 0, cachingData: delegate.shouldCacheData, fromCache: false, completion)
+        self.performQuery(delegate: delegate, skipping: 0, cachingData: delegate.shouldCacheData, fromCache: true, completion)
     }
     
     private func performQuery<Delegate: SRISDelegate>(delegate: Delegate, skipping: Int, cachingData: Bool, fromCache: Bool, _ completion: @escaping ([PFObject]?, Error?) -> ()) {
         let query = PFQuery(className: delegate.className)
         if fromCache {
-            query.fromLocalDatastore()
+            query.fromPin()
         }
         delegate.filterParameters.forEach { filter in
             switch filter.condition {
@@ -62,20 +60,18 @@ struct SRISParseRequest: SRISRequest {
         }
         delegate.querySorting.forEach { sorting in
             switch sorting.sorting {
-                case .ascending:
-                    query.addAscendingOrder(sorting.key)
-                case .descending:
-                    query.addDescendingOrder(sorting.key)
+            case .ascending:
+                query.addAscendingOrder(sorting.key)
+            case .descending:
+                query.addDescendingOrder(sorting.key)
             }
         }
-        query.limit = delegate.recordsPerRequest
         query.skip = skipping
+        query.limit = fromCache ? .max : delegate.recordsPerRequest
         query.findObjectsInBackground { result, error in
             DispatchQueue.main.async {
                 if cachingData {
-                    result?.forEach({ object in
-                        object.pinInBackground()
-                    })
+                    PFObject.pinAll(inBackground: result)
                 }
                 if let error = error {
                     completion(nil, error)
@@ -85,5 +81,5 @@ struct SRISParseRequest: SRISRequest {
             }
         }
     }
-    
+
 }
