@@ -146,6 +146,8 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
     // MARK: Manager Public Methods
     
     open func reload() {
+        self.results = []
+        self.cachedResults = []
         self.start()
     }
     
