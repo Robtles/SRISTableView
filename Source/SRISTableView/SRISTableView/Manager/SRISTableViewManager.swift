@@ -64,7 +64,7 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
         }
     }
     
-    // MARK: Manager Methods
+    // MARK: Manager Internal Methods
     
     private func load() {
         switch self.state {
@@ -141,6 +141,12 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
                 return
             }
         }
+    }
+    
+    // MARK: Manager Public Methods
+    
+    open func reload() {
+        self.start()
     }
     
     // MARK: Table Methods
