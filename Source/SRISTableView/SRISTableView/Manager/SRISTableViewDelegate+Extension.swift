@@ -12,10 +12,6 @@ import UIKit
 
 public extension SRISDelegate {
     
-    var displaySorting: SRISTableViewSorting? {
-        return self.querySorting
-    }
-    
     var filterParameters: [SRISTableViewFilter] {
         return []
     }
@@ -24,8 +20,8 @@ public extension SRISDelegate {
         return 3.0
     }
     
-    var querySorting: SRISTableViewSorting? {
-        return nil
+    var querySorting: [SRISTableViewSorting] {
+        return []
     }
     
     func failedCell(forTableView tableView: UITableView) -> UITableViewCell! {

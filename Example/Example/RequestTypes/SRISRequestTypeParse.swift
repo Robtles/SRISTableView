@@ -60,12 +60,12 @@ struct SRISParseRequest: SRISRequest {
                 query.whereKey(filter.key, notEqualTo: filter.value)
             }
         }
-        if let sorting = delegate.querySorting {
+        delegate.querySorting.forEach { sorting in
             switch sorting.sorting {
-            case .ascending:
-                query.addAscendingOrder(sorting.key)
-            case .descending:
-                query.addDescendingOrder(sorting.key)
+                case .ascending:
+                    query.addAscendingOrder(sorting.key)
+                case .descending:
+                    query.addDescendingOrder(sorting.key)
             }
         }
         query.limit = delegate.recordsPerRequest

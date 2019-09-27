@@ -83,7 +83,7 @@ public protocol SRISTableViewDelegate {
     var intervalBeforeReload: TimeInterval { get }
     
     /// The ascending or descending request sorting key
-    var querySorting: SRISTableViewSorting? { get }
+    var querySorting: [SRISTableViewSorting] { get }
     
     /// The amount of results to load per request
     var recordsPerRequest: Int { get }
