@@ -25,9 +25,7 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
     
     // MARK: Instance Properties
     
-    private var allResultsOrdered: [Delegate.ContentType] {
-        return self.loadMoreOnScrollDelegate.displayedResults(fromUnorderedResults: (self.results + self.cachedResults))
-    }
+    private var allResultsOrdered: [Delegate.ContentType] = []
     
     private var allResultsRaw: [Delegate.ContentType] {
         return self.results + self.cachedResults
@@ -87,6 +85,7 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
                         })
                     }
                     self.results.append(contentsOf: result)
+                    self.allResultsOrdered = self.loadMoreOnScrollDelegate.displayedResults(fromUnorderedResults: (self.results + self.cachedResults))
                     self.state = .succeeded
                     if !self.cachedResults.isEmpty {
                         self.load()
@@ -113,6 +112,7 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
                 self.tryReload(fromCache: true)
             } else if let result = result as? [Delegate.ContentType] {
                 self.cachedResults.append(contentsOf: result)
+                self.allResultsOrdered = self.loadMoreOnScrollDelegate.displayedResults(fromUnorderedResults: (self.results + self.cachedResults))
                 self.state = .succeeded
                 self.load()
             }
@@ -148,6 +148,7 @@ open class SRISTableViewManager<Delegate: SRISDelegate, Request: SRISRequest>: N
     open func reload() {
         self.results = []
         self.cachedResults = []
+        self.allResultsOrdered = []
         self.start()
     }
     
